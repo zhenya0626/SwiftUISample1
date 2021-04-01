@@ -13,6 +13,12 @@
 		EE9772D02614DD8C0035C26E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9772BB2614DD8C0035C26E /* ContentView.swift */; };
 		EE9772D12614DD8C0035C26E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE9772BC2614DD8C0035C26E /* Assets.xcassets */; };
 		EE9772D22614DD8C0035C26E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE9772BC2614DD8C0035C26E /* Assets.xcassets */; };
+		EE9772E42615F9230035C26E /* Model1.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9772E32615F9230035C26E /* Model1.swift */; };
+		EE9772E82615F9700035C26E /* Response1.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9772E72615F9700035C26E /* Response1.swift */; };
+		EE9772ED2615F9B90035C26E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9772EC2615F9B90035C26E /* APIService.swift */; };
+		EE9772F12615FAAC0035C26E /* APIServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9772F02615FAAC0035C26E /* APIServiceError.swift */; };
+		EE9772F72616008F0035C26E /* Request1.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9772F62616008F0035C26E /* Request1.swift */; };
+		EE9772FB261601A40035C26E /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9772FA261601A40035C26E /* ContentViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		EE9772C92614DD8C0035C26E /* MinecraftLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinecraftLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE9772CB2614DD8C0035C26E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE9772CC2614DD8C0035C26E /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		EE9772E32615F9230035C26E /* Model1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model1.swift; sourceTree = "<group>"; };
+		EE9772E72615F9700035C26E /* Response1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response1.swift; sourceTree = "<group>"; };
+		EE9772EC2615F9B90035C26E /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		EE9772F02615FAAC0035C26E /* APIServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceError.swift; sourceTree = "<group>"; };
+		EE9772F62616008F0035C26E /* Request1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request1.swift; sourceTree = "<group>"; };
+		EE9772FA261601A40035C26E /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +70,10 @@
 			isa = PBXGroup;
 			children = (
 				EE9772BA2614DD8C0035C26E /* MinecraftLoginApp.swift */,
-				EE9772BB2614DD8C0035C26E /* ContentView.swift */,
 				EE9772BC2614DD8C0035C26E /* Assets.xcassets */,
+				EE9772DD2614DDB30035C26E /* Screen */,
+				EE9772EB2615F9A50035C26E /* Service */,
+				EE9772E02615F8A30035C26E /* Model */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -88,6 +102,34 @@
 				EE9772CC2614DD8C0035C26E /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		EE9772DD2614DDB30035C26E /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				EE9772BB2614DD8C0035C26E /* ContentView.swift */,
+				EE9772FA261601A40035C26E /* ContentViewModel.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		EE9772E02615F8A30035C26E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE9772E32615F9230035C26E /* Model1.swift */,
+				EE9772E72615F9700035C26E /* Response1.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE9772EB2615F9A50035C26E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EE9772EC2615F9B90035C26E /* APIService.swift */,
+				EE9772F02615FAAC0035C26E /* APIServiceError.swift */,
+				EE9772F62616008F0035C26E /* Request1.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,8 +229,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE9772FB261601A40035C26E /* ContentViewModel.swift in Sources */,
+				EE9772ED2615F9B90035C26E /* APIService.swift in Sources */,
+				EE9772E42615F9230035C26E /* Model1.swift in Sources */,
 				EE9772CF2614DD8C0035C26E /* ContentView.swift in Sources */,
+				EE9772E82615F9700035C26E /* Response1.swift in Sources */,
 				EE9772CD2614DD8C0035C26E /* MinecraftLoginApp.swift in Sources */,
+				EE9772F12615FAAC0035C26E /* APIServiceError.swift in Sources */,
+				EE9772F72616008F0035C26E /* Request1.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
