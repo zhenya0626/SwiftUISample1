@@ -13,6 +13,7 @@ protocol APIRequestType {
     
     var path: String { get }
     var queryItems: [URLQueryItem]? { get }
+    var httpBody: RequestBody1? { get }
 }
 
 protocol APIServiceType {
@@ -22,7 +23,7 @@ protocol APIServiceType {
 final class APIService: APIServiceType {
     private let baseURLString: String
     
-    init(baseURLString: String = "https://api.github.com") {
+    init(baseURLString: String = "https://us-central1-minecraft-auto-login.cloudfunctions.net") {
         self.baseURLString = baseURLString
     }
     
@@ -34,15 +35,40 @@ final class APIService: APIServiceType {
         
         var urlComponents = URLComponents(url: pathURL, resolvingAgainstBaseURL: true)!
         urlComponents.queryItems = request.queryItems
-        var request = URLRequest(url: urlComponents.url!)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        var urlRequest = URLRequest(url: urlComponents.url!)
+        
+        let jsonEncoder = JSONEncoder()
+        
+        
+        if let data = request.httpBody, let jsonData = try? jsonEncoder.encode(data) {
+            urlRequest.httpBody = jsonData
+        }
+
+        
+        
+        urlRequest.httpMethod = "POST"
+        
+        
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
         
         let decorder = JSONDecoder()
         decorder.keyDecodingStrategy = .convertFromSnakeCase
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .map{ data, URLResponse in data}
-            .mapError { _ in APIServiceError.responseError }
-            .decode(type: Request.Response.self, decoder: decorder)
+        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+            .map{ data, URLResponse in
+                let data = data as Data
+                let httpResponse = URLResponse as? HTTPURLResponse
+                print("data: ", data)
+                print("statusCode:", httpResponse?.statusCode)
+                print("dataの中身: ", String(data: data, encoding: .utf8)!)
+                return String(data: data, encoding: .utf8)! as! Request.Response
+            }
+//            .mapError { _ in APIServiceError.responseError }
+//            .decode(type: Request.Response.self, decoder: decorder)
+//            .map { data in
+//                print("decoded", data)
+//                return data
+//            }
             .mapError({ (error) -> APIServiceError in
                 APIServiceError.parseError(error)
             })

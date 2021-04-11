@@ -8,6 +8,6 @@
 import Foundation
 
 struct Response1: Decodable {
-    var statusCode: String
-    var items: [Model1]
+    var code: String
+//    var message: [Model1]
 }

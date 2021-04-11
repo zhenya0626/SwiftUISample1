@@ -36,7 +36,7 @@ final class ContentViewModel: ObservableObject {
     // MARK: - Private
     private let apiService: APIServiceType
     private let onCommitSubject = PassthroughSubject<[String], Never>()
-    private let responseSubject = PassthroughSubject<Response1, Never>()
+    private let responseSubject = PassthroughSubject<String, Never>()
     private let errorSubject = PassthroughSubject<APIServiceError, Never>()
     private var cancellables: [AnyCancellable] = []
     
@@ -46,16 +46,16 @@ final class ContentViewModel: ObservableObject {
     private func bind() {
         let responseSubscriber = onCommitSubject
             .flatMap{ [apiService] (query) in
-                apiService.request(with: Request1(query: query))
-                    .catch { [weak self] error -> Empty<Response1, Never> in
+                apiService.request(with: Request1(query: query, code: "CODE", id: query[0], password: query[1]))
+                    .catch { [weak self] error -> Empty<String, Never> in
                         self?.errorSubject.send(error)
                         return .init()
                     }
             }
-            .map{ $0.items }
-            .sink(receiveValue: {[weak self] (repositories) in
+            .map{ $0 }
+            .sink(receiveValue: {[weak self] (message) in
                 guard let self = self else { return }
-                self.inputText = ""
+                self.inputText = message
                 self.isLoading = false
             })
         
